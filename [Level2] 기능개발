@@ -1,0 +1,20 @@
+#try1 -> solve
+#day를 늘리면서 가장 앞이 해결된다면 해결되지 않을때까지 반복후 값 추가
+def solution(progresses, speeds):
+    answer = []
+    day = 1
+    
+    add = 0
+    while progresses:
+        if progresses[0] + day*speeds[0] >= 100:
+            add += 1
+            progresses.pop(0)
+            speeds.pop(0)
+            continue
+        if add:
+            answer.append(add)
+            add = 0
+        day += 1
+    answer.append(add)
+        
+    return answer
