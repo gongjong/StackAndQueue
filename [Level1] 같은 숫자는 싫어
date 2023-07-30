@@ -1,0 +1,21 @@
+#try1 -> solve
+
+def solution(arr):
+    answer = [arr[0]]
+    stack = [arr[0]]
+    for i in arr[1:]:
+        if stack[-1] != i:
+            answer.append(i)
+        stack.append(i)
+    return answer
+
+
+#다른사람 풀이
+#stack을 따로 만들지 않고 하나 이전의 값과 비교하며 해결
+def solution(s):
+    result = []
+    for c in s:
+        if len(result) == 0 or result[-1] != c:
+            result.append(c)
+
+    return result
