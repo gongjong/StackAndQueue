@@ -1,0 +1,23 @@
+#try1 -> solve
+# line10에서 truck_weights을 deque로 만들어 주었는데 이것보다는
+# reverse를 사용해서 pop()을 사용하는게 더 좋아보임
+
+from collections import deque
+
+def solution(bridge_length, weight, truck_weights):
+    answer = 0
+    bridge = [0] * bridge_length
+    q = deque(bridge)
+    truck_weights = deque(truck_weights)
+    
+    while q:
+        weight += q.popleft()
+        answer += 1
+        if len(truck_weights):
+            if weight >= truck_weights[0]:
+                weight -= truck_weights[0]
+                q.append(truck_weights.popleft())
+            else:
+                q.append(0)
+    
+    return answer
