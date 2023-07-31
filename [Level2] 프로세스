@@ -1,0 +1,29 @@
+#try1 -> solve
+# deque에 location과 priority를 저장한다
+# 3가지 조건을 통해 핸들링해서 목표 location에 도달하면 끝낸다.
+
+from collections import deque
+
+def solution(priorities, location):
+    answer = 0
+    
+    q = deque([])
+    for i, priority in enumerate(priorities):
+        q.append([i, priority])
+    
+    cnt = 1
+    while q:
+        locate, priority = q.popleft()
+        max_ = max(priorities)
+        if max_ == priority and locate == location:
+            answer = cnt
+            break
+        elif max_ <= priority:
+            priorities.remove(priority)
+            cnt += 1
+            continue
+        else:
+            q.append([locate, priority])
+            
+    
+    return answer
